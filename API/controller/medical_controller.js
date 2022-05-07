@@ -7,7 +7,7 @@ const database = require ("../connectdatabase.js");
 
 module.exports = {
     get : function(req, res){
-        var sql = 'SELECT * FROM biqtzwqiihjmw2npadtd.UserName '
+        var sql = 'SELECT * FROM biqtzwqiihjmw2npadtd.Account '
     database.query(sql , (err, response) => {
         if (err) {
             console.log("khong the lay du lieu");
@@ -26,6 +26,20 @@ module.exports = {
             console.log("message: 'Update success!'");
     })
     res.json(response);
-  }
+  },
+  postAccount : function(req, res) {
+      var Account = req.body
+        
+      
+      console.log(Account)
+
+        var sql = `INSERT INTO biqtzwqiihjmw2npadtd.Account(UserName, Password, Role, IsActive, Role_ID)     VALUES("${Account.UserName}", "${Account.Password}", "${Account.Role}", "${Account.IsActive}", "${Account.Role_ID}")`
+        database.query(sql, (err, res)=> {
+            if (err)  throw err ;
+        }),
+        res.send(Account)
+    }
+
+  
 
 }
