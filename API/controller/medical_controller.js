@@ -38,9 +38,17 @@ module.exports = {
             if (err)  throw err ;
             res.json(Account)
         })
+  },
+  postPatient : function(req, res) {
+    var Patient = req.body
+      
     
-  }
+    console.log(Patient)
 
-  
+      var sql = `INSERT INTO biqtzwqiihjmw2npadtd.Patient(Patient_ID, Name, Image, Phone, Email)     VALUES("${Patient.Patient_ID}", "${Patient.Name}", "${Patient.Image}", "${Patient.Phone}", "${Patient.Email}")`
+      database.query(sql, (err, res)=> {
+          if (err)  throw err ;
+        //   res.json(Patient)
+      })
 
-}
+    }}

@@ -10,5 +10,6 @@ module.exports = function(app) {
 
     app.route("/Accounts").post(medical_controller.postAccount);
         
+    app.route("/Patient").post(medical_controller.postPatient);
     };
 
