@@ -36,9 +36,10 @@ module.exports = {
         var sql = `INSERT INTO biqtzwqiihjmw2npadtd.Account(UserName, Password, Role, IsActive, Role_ID)     VALUES("${Account.UserName}", "${Account.Password}", "${Account.Role}", "${Account.IsActive}", "${Account.Role_ID}")`
         database.query(sql, (err, res)=> {
             if (err)  throw err ;
-        }),
-        res.send(Account)
-    }
+            res.json(Account)
+        })
+    
+  }
 
   
 
