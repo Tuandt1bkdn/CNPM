@@ -1,5 +1,11 @@
 const express = require("express");
 const body_parser = require("body-parser");
+const cors = require("cors");
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:trueoptionSuccessStatus:200,
+ }
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 const app = express();
 
