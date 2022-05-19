@@ -48,7 +48,7 @@ module.exports = {
       var sql = `INSERT INTO biqtzwqiihjmw2npadtd.Patient(Patient_ID, Name, Image, Phone, Email)     VALUES("${Patient.Patient_ID}", "${Patient.Name}", "${Patient.Image}", "${Patient.Phone}", "${Patient.Email}")`
       database.query(sql, (err, res)=> {
           if (err)  throw err ;
-        //   res.json(Patient)
+          //res.send(Patient)
       })
   },
   // register : function (req, res)  {
