@@ -42,7 +42,6 @@ module.exports = {
   postPatient : function(req, res) {
     var Patient = req.body
       
-    
     console.log(Patient)
 
       var sql = `INSERT INTO biqtzwqiihjmw2npadtd.Patient(Patient_ID, Name, Image, Phone, Email)     VALUES("${Patient.Patient_ID}", "${Patient.Name}", "${Patient.Image}", "${Patient.Phone}", "${Patient.Email}")`
