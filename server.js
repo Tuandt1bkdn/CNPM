@@ -5,9 +5,11 @@ const corsOptions ={
     origin:'*', 
     credentials:true,            //access-control-allow-credentials:trueoptionSuccessStatus:200,
  }
-app.use(cors(corsOptions)) // Use this after the variable declaration
+ // Use this after the variable declaration
 
 const app = express();
+
+app.use(cors(corsOptions))
 
 app.use(body_parser.json())
 
