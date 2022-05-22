@@ -9,6 +9,7 @@ const corsOptions ={
 
 const app = express();
 
+
 app.use(cors(corsOptions))
 
 app.use(body_parser.json())
@@ -19,7 +20,7 @@ app.use(body_parser.urlencoded({
 
 module.exports = app
 
-const port = process.env.PORT || 3000 ;
+const port = process.env.PORT || 3001 ;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
 

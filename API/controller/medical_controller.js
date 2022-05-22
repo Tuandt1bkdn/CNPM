@@ -72,4 +72,15 @@ module.exports = {
   //     });
   //   }
   // },
+  getAppointment : function(req, res){
+    var sql = 'SELECT * FROM biqtzwqiihjmw2npadtd.Appointment '
+database.query(sql , (err, response) => {
+    if (err) {
+        console.log("khong the lay du lieu");
+    }
+    res.json(response);
+}
+)
+}
+
 }
