@@ -1,20 +1,42 @@
 
 
 const mysql = require ("mysql");
-const { response } = require("../../server");
-
+const { response } = require("../../server.js");
+const Usersmodels = require("../model/users.models");
 const database = require ("../connectdatabase.js");
+const jwt = require("jsonwebtoken")
+//const ACCESS_TOKEN_SECRET = jwtabc
+// const dotenv = require("/Workspace/Ex1/.env")
+// dotenv.config();
+
 
 module.exports = {
-    get : function(req, res){
+    getAccount : function(req, res){
         var sql = 'SELECT * FROM biqtzwqiihjmw2npadtd.Account '
     database.query(sql , (err, response) => {
         if (err) {
             console.log("khong the lay du lieu");
         }
         res.json(response);
+    })
+},
+    getMedicine : function(req, res){
+        var sql = 'SELECT * FROM biqtzwqiihjmw2npadtd.Medicine '
+    database.query(sql , (err, response) => {
+        if (err) {
+        console.log("khong the lay du lieu");
+        }
+        res.json(response);
+        })
+},
+getuser : function(req, res){
+    var sql = 'SELECT * FROM biqtzwqiihjmw2npadtd.Patient '
+database.query(sql , (err, response) => {
+    if (err) {
+    console.log("khong the lay du lieu");
     }
-    )
+    res.json(response);
+    })
 },
   update : function(req, res) {
         var data = req.body
@@ -50,37 +72,21 @@ module.exports = {
           //res.send(Patient)
       })
   },
-  // register : function (req, res)  {
-  //   const username = req.body.username.toLowerCase();
-  //   const user = await userModel.getUser(username);
-  //   if (user) res.status(409).send('Tên tài khoản đã tồn tại.');
-  //   else {
-  //     const hashPassword = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
-  //     const newUser = {
-  //       username: username,
-  //       password: hashPassword,
-  //             // Thêm các tham số khác tại đây ...
-  //     };
-  //     const createUser = await userModel.createUser(newUser);
-  //     if (!createUser) {
-  //       return res
-  //         .status(400)
-  //         .send('Có lỗi trong quá trình tạo tài khoản, vui lòng thử lại.');
-  //     }
-  //     return res.send({
-  //       username,
-  //     });
-  //   }
-  // },
+  signin :  function (req, res)  {
+    const data = req.body;
+    console.log(data);
+    const accessToken = jwt.sign(data, "jwtabc", {expiresIn: '60s'});
+    res.json({accessToken});
+  },
   getAppointment : function(req, res){
-    var sql = 'SELECT * FROM biqtzwqiihjmw2npadtd.Appointment '
+    var sql = 'SELECT biqtzwqiihjmw2npadtd.Appointment.Appointment_ID, biqtzwqiihjmw2npadtd.Patient.Name, biqtzwqiihjmw2npadtd.Doctor.Name, biqtzwqiihjmw2npadtd.Appointment.DateTime FROM biqtzwqiihjmw2npadtd.Appointment, biqtzwqiihjmw2npadtd.Patient , biqtzwqiihjmw2npadtd.Doctor WHERE biqtzwqiihjmw2npadtd.Appointment.Patient_ID = biqtzwqiihjmw2npadtd.Patient.Patient_ID and biqtzwqiihjmw2npadtd.Appointment.Doctor_ID = biqtzwqiihjmw2npadtd.Doctor.Doctor_ID';
 database.query(sql , (err, response) => {
     if (err) {
         console.log("khong the lay du lieu");
     }
     res.json(response);
-}
-)
-}
+})
+},
+
 
 }

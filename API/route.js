@@ -2,9 +2,25 @@ const medical_controller = require ("./controller/medical_controller.js")
 
 const Role = require("./controller/medical_controller.js")
 
+function  authenToken(res, req, next) {
+    //const AuthorizationHeader = req.headers['Authorization'];
+    console.log(res);
+    //console.log(JSON.stringify(req.headers));
+    // const token = authorizationHeader.split(' ')[1];
+    // if (!token) res.sendStatus(401);
+
+    // jwt.verify(token, "jwtabc", (err, data) => {
+    //     console.log(err, data);
+    // })
+}
+
 module.exports = function(app) {
 
-    app.route("/Account").get(medical_controller.get);
+    app.route("/Account").get(authenToken, medical_controller.getAccount);
+
+    app.route("/Medicine").get(medical_controller.getMedicine);
+
+    app.route("/user").get(medical_controller.getuser);
 
     app.route("/Appointment").get(medical_controller.getAppointment);
     
@@ -14,8 +30,10 @@ module.exports = function(app) {
         
     app.route("/Patient").post(medical_controller.postPatient);
 
-    //app.route("/auth").post(medical_controller.post)
+    //app.route("/signup").post(medical_controller.signup)
 
-    //app.route("/register").post(medical_controller.register)
+    app.route("/signin").post(medical_controller.signin)
+
+    //app.route("/secret").post(medical_controller.secret)
     };
 
